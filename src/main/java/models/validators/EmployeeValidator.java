@@ -5,6 +5,7 @@ import java.util.List;
 
 import actions.views.EmployeeView;
 import constants.MessageConst;
+import services.EmployeeService;
 
 /**
  * 従業員インスタンスに設定されている値のバリデーションを行うクラス
@@ -52,7 +53,7 @@ public class EmployeeValidator {
      * @param codeDuplicateCheckFlag 社員番号の重複チェックを実施するかどうか(実施する:true 実施しない:false)
      * @return エラーメッセージ
      */
-    public static String validateCode(EmployeeService, String code, Boolean codeDuplicateCheckFlag) {
+    public static String validateCode(EmployeeService service, String code, Boolean codeDuplicateCheckFlag) {
 
         // 入力値がなければエラーメッセージを返却
         if(code == null || code.equals("")) {
