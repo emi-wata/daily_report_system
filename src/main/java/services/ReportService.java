@@ -65,7 +65,7 @@ public class ReportService extends ServiceBase {
      * @return データの件数
      */
     public long countAll() {
-        long reports_count = (long) em.createNamedQuery(JpaConst.Q_REP_COUNT, long.class)
+        long reports_count = (long) em.createNamedQuery(JpaConst.Q_REP_COUNT, Long.class)
                 .getSingleResult();
         return reports_count;
     }
