@@ -38,11 +38,20 @@ public interface JpaConst {
     String REP_COL_TITLE = "title"; //日報のタイトル
     String REP_COL_CONTENT = "content"; //日報の内容
     String REP_COL_CREATED_AT = "created_at"; //登録日時
-    String REP_COL_UPDATED_AT = "pudated_at"; //更新日時
+    String REP_COL_UPDATED_AT = "updated_at"; //更新日時
+
+    // いいねテーブル
+    String TABLE_YIN = "yoine";
+    // いいねテーブルカラム
+    String YIN_COL_ID = "yoine_id";
+    String YIN_COL_EMP_ID = "yoine_employee_id";
+    String YIN_COL_REP_ID = "yoine_report_id";
+    String YIN_COL_CREATED_AT = "created_at";
 
     // Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
+    String ENTITY_YIN = "yoine"; //いいね
 
     // JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; //社員番号
@@ -74,5 +83,12 @@ public interface JpaConst {
     // 指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+    // 全てのいいねの件数を取得する
+    String Q_YIN_COUNT = ENTITY_YIN + ".count";
+    String Q_YIN_COUNT_DEF = "SERECT COUNT(y) FROM Yoine AS y";
+    // 指定した従業員がいいねされた日報を全件日時の降順で取得する
+
+    // 指定した従業員がいいねした日報を全件日時の降順で取得する
+
 
 }
