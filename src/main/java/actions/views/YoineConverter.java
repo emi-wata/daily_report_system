@@ -10,9 +10,8 @@ public class YoineConverter {
     public static Yoine toModel(YoineView yv) {
         return new Yoine(
                 yv.getYoineId(),
-                yv.getYoineEmployeeId(),
-                ReportConverter.toModel(yv.getYoineReportId()),
-                yv.getCreatedAt());
+                EmployeeConverter.toModel(yv.getYoineEmployee()),
+                ReportConverter.toModel(yv.getYoineReport()));
     }
 
     public static YoineView toView(Yoine y) {
@@ -23,10 +22,8 @@ public class YoineConverter {
 
         return new YoineView(
                 y.getYoineId(),
-                y.getYoineEmployeeId(),
-                ReportConverter.toView(y.getYoineReportId()),
-                y.getCreatedAt());
-    }
+                EmployeeConverter.toView(y.getYoineEmployee()),
+                ReportConverter.toView(y.getYoineReport()));    }
 
     public static List<YoineView> toViewList(List<Yoine> list) {
         List<YoineView> yvs = new ArrayList<>();
@@ -40,9 +37,8 @@ public class YoineConverter {
 
     public static void copyViewToModel(Yoine y, YoineView yv) {
         y.setYoineId(yv.getYoineId());
-        y.setYoineEmployeeId(yv.getYoineEmployeeId());
-        y.setYoineReportId(ReportConverter.toModel(yv.getYoineReportId()));
-        y.setCreatedAt(yv.getCreatedAt());
+        y.setYoineEmployee(EmployeeConverter.toModel(yv.getYoineEmployee()));
+        y.setYoineReport(ReportConverter.toModel(yv.getYoineReport()));
     }
 
 }

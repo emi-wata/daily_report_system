@@ -57,6 +57,8 @@ public interface JpaConst {
     String JPQL_PARM_CODE = "code"; //社員番号
     String JPQL_PARM_PASSWORD = "password"; //パスワード
     String JPQL_PARM_EMPLOYEE = "employee"; //従業員
+    String JPQL_PARM_REPORT = "report";
+    String JPQL_PARM_YOINE = "yoine";
 
     // NamedQueryのnameとquery
     //全ての従業員をidの降順に取得する
@@ -83,12 +85,15 @@ public interface JpaConst {
     // 指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
-    // 全てのいいねの件数を取得する
+
+    String Q_YIN_GET_ALL = ENTITY_YIN + ".getAll";
+
     String Q_YIN_COUNT = ENTITY_YIN + ".count";
-    String Q_YIN_COUNT_DEF = "SERECT COUNT(y) FROM Yoine AS y";
-    // 指定した従業員がいいねされた日報を全件日時の降順で取得する
+    String Q_YIN_COUNT_DEF = "SELECT COUNT(y) FROM Yoine AS y";
 
-    // 指定した従業員がいいねした日報を全件日時の降順で取得する
+    String Q_YIN_GET_ALL_MINE = ENTITY_YIN + ".getAllMine";
+    String Q_YIN_GET_ALL_MINE_DEF = "SELECT y FROM Yoine AS y WHERE y.yoineEmployee = :" + JPQL_PARM_EMPLOYEE + " AND y.yoineReport = :" + JPQL_PARM_REPORT;
 
-
+    String Q_YIN_COUNT_ALL_MINE = ENTITY_YIN + ".countAllMine";
+    String Q_YIN_COUNT_ALL_MINE_DEF = "SELECT COUNT(y) FROM Yoine AS y WHERE y.yoineReport = :" + JPQL_PARM_REPORT;
 }

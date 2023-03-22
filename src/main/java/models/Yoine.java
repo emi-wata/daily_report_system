@@ -1,6 +1,5 @@
 package models;
 
-import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import constants.JpaConst;
@@ -18,7 +19,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Table(name = JpaConst.TABLE_YIN)
-
+@NamedQueries({
+    @NamedQuery(
+            name = JpaConst.Q_YIN_GET_ALL_MINE,
+            query = JpaConst.Q_YIN_GET_ALL_MINE_DEF),
+    @NamedQuery(
+            name = JpaConst.Q_YIN_COUNT_ALL_MINE,
+            query = JpaConst.Q_YIN_COUNT_ALL_MINE_DEF),
+})
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,14 +39,12 @@ public class Yoine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer yoineId;
 
-    @Column(name = JpaConst.YIN_COL_EMP_ID, nullable = false)
-    private Integer yoineEmployeeId;
+    @ManyToOne
+    @JoinColumn(name = JpaConst.YIN_COL_EMP_ID, nullable = false)
+    private Employee yoineEmployee;
 
     @ManyToOne
     @JoinColumn(name = JpaConst.YIN_COL_REP_ID, nullable = false)
-    private Report yoineReportId;
-
-    @Column(name = JpaConst.YIN_COL_CREATED_AT, nullable = false)
-    private LocalDateTime createdAt;
+    private Report yoineReport;
 
 }

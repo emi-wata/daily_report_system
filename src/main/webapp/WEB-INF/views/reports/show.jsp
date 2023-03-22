@@ -2,10 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="constants.ForwardConst" %>
+<%@ page import="constants.AttributeConst" %>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
+<c:set var="action" value="${ForwardConst.ACT_YOINE.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
+<c:set var="yoine" value="${ForwardConst.CMD_CREATE.getValue()}" />
+<c:set var="yoineCount" value="${AttributeConst.YIN_COUNT.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -40,6 +44,11 @@
             </tbody>
         </table>
 
+        <form method="POST" action="<c:url value='?action=${action}&command=${yoine}' />">
+            <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
+            <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+            <button type="submit">いいね<c:out value="${yoineCount}"/></button>
+        </form>
         <c:if test="${sessionScope.login_employee.id == report.employee.id}">
             <p>
                 <a href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報を編集する</a>

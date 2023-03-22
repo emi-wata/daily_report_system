@@ -1,7 +1,5 @@
 package actions.views;
 
-import java.time.LocalDateTime;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,9 +13,8 @@ public class YoineView {
 
     private Integer yoineId;
 
-    private Integer yoineEmployeeId;
+    private EmployeeView yoineEmployee;
 
-    private ReportView yoineReportId;
+    private ReportView yoineReport;
 
-    private LocalDateTime createdAt;
 }
