@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 
 import actions.views.EmployeeView;
 import actions.views.ReportView;
+import actions.views.YoineView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
@@ -160,15 +161,17 @@ public class ReportAction extends ActionBase {
             forward(ForwardConst.FW_ERR_UNKNOWN);
 
         } else {
-            ReportView reportId = (ReportView) rv.getId();
-            long yoineCount = yService.countAllMine(reportId);
-            putRequestScope(AttributeConst.YOINE, reportId);
+         // セッションからログイン中の従業員情報を取得
+            EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+            List<YoineView> yv =  yService.getMineYoine(ev, rv);
+            long yoineCount = yService.countAllMine(rv);
+            putRequestScope(AttributeConst.YOINE, yv);
             putRequestScope(AttributeConst.YIN_COUNT, yoineCount);
             putRequestScope(AttributeConst.REPORT, rv); //取得した日報データ
 
-
             // 詳細画面を表示
             forward(ForwardConst.FW_REP_SHOW);
+
         }
     }
 

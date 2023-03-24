@@ -51,11 +51,11 @@ public enum AttributeConst {
     REP_TITLE("title"),
     REP_CONTENT("content_msg"),
 
-
-    YOINE("yoine"),
+    YOINE("yoineyoine"),
     YOINES("yoines"),
     YIN_DATE("yoine_date"),
     YIN_COUNT("yoineCount");
+
 
     private final String text;
     private final Integer i;

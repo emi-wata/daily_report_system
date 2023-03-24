@@ -9,7 +9,7 @@
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
 <c:set var="yoine" value="${ForwardConst.CMD_CREATE.getValue()}" />
-<c:set var="yoineCount" value="${AttributeConst.YIN_COUNT.getValue()}" />
+
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -47,7 +47,15 @@
         <form method="POST" action="<c:url value='?action=${action}&command=${yoine}' />">
             <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
             <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
-            <button type="submit">いいね<c:out value="${yoineCount}"/></button>
+            <c:choose>
+                <c:when test="${yoineyoine.size() == 0}">
+                    <button type="submit">いいね</button> <c:out value="${yoineCount}"/>
+                </c:when>
+                <c:otherwise>
+                    <button type="submit">いいね解除</button><c:out value="${yoineCount}"/>
+                </c:otherwise>
+            </c:choose>
+
         </form>
         <c:if test="${sessionScope.login_employee.id == report.employee.id}">
             <p>
